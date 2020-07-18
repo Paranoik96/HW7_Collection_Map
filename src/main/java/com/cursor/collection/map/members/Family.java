@@ -1,10 +1,12 @@
-package om.cursor.collection.map.members;
+package com.cursor.collection.map.members;
+
+import java.util.Objects;
 
 public class Family implements Comparable<Family>{
-    private final String name;
-    private final int quantityMember;
-    private final String title;
-    private final String nameOfEmblem;
+    private  String name;
+    private  int quantityMember;
+    private  String title;
+    private  String nameOfEmblem;
 
     public Family(String name, int quantityMember, String title, String nameOfEmblem) {
         this.name = name;
@@ -34,6 +36,22 @@ public class Family implements Comparable<Family>{
                 ", title='" + title + '\'' +
                 ", nameOfEmblem='" + nameOfEmblem + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Family family = (Family) o;
+        return quantityMember == family.quantityMember &&
+                Objects.equals(name, family.name) &&
+                Objects.equals(title, family.title) &&
+                Objects.equals(nameOfEmblem, family.nameOfEmblem);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, quantityMember, title, nameOfEmblem);
     }
 
     @Override
